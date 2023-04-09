@@ -8,7 +8,7 @@ import "@openzeppelin/contracts@4.8.2/access/Ownable.sol";
 
 /// @custom:security-contact fufidex@gmail.com
 contract FuFiToken is ERC20, ERC20Burnable, Pausable, Ownable {
-    constructor() ERC20("FuFi Protocols", "FFT") {
+    constructor() ERC20("FuFi Utility & Governance Token", "FFT") {
         _mint(msg.sender, 10000000000 * 10 ** decimals());
     }
 
