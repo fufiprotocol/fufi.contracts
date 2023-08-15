@@ -28,7 +28,6 @@ contract FuFiToken is ERC20, ERC20Burnable, Pausable, Ownable {
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
-        if (totalSupply + t)
         _mint(to, amount);
     }
 
