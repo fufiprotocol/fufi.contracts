@@ -10,7 +10,7 @@ import "@openzeppelin/contracts@4.8.2/token/ERC20/extensions/ERC20Capped.sol";
 /// @custom:security-contact fufidex@gmail.com
 /// @custom:dex-website https://fufi.exchange for mainnet exchange
 /// @custom:github-repo https://github.com/fufiprotocol
-contract FuFiToken is ERC20, ERC20Burnable, Pausable, Ownable {
+contract FuFiToken is ERC20, ERC20Burnable, Pausable, Ownable, ERC20Cappped {
     constructor() ERC20("FuFi Utility & Governance Token", "FFT") ERC20Capped( 10000000000 * 10 ** decimals() ) {
         _mint(msg.sender, 1800000000 * 10 ** decimals()); //1.8B = 0.2B(Airdrop) + 0.1B(IDO) + 1.5B(Founding Team)
     }
@@ -29,6 +29,13 @@ contract FuFiToken is ERC20, ERC20Burnable, Pausable, Ownable {
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);
+    }
+
+    function _mint(address to, uint256 amount)
+        internal
+        override(ERC20, ERC20Capped)
+    {
+        super._mint(to, amount);
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 amount)
